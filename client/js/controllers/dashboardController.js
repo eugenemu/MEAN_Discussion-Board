@@ -2,6 +2,7 @@ angular.module('myApp');
 myApp.controller('dashboardController', function ($scope, $location, userFactory, topicFactory) {
 
 	$scope.user = userFactory.getUser();
+	console.log($scope.user);
 
 	topicFactory.showTopics(function(data) {
 		$scope.topics = data;

@@ -1,0 +1,37 @@
+<div ng-controller="dashboardController">
+	<p>Welcome, {{currUser.name}}!</p>
+	<button ng-click="logout()">Logout</button>
+	<p>Search <input type="text" ng-model="filter_topics"></p>
+	<table>
+		<thead>
+			<tr>
+				<th>Category</th>
+				<th>Topic</th>
+				<th>User Name</th>
+				<th>Posts</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="topic in topics | filter: filter_topics">
+				<td>{{topic.category}} </td>
+				<td><a href="#showTopic/{{topic._id}}">{{topic.topic}}</a></td>
+				<td><a href="#showUser/{{topic._user._id}}">{{topic._user.name}}</a></td>
+				<td>{{topic.posts.length}}</td>
+			</tr>
+		</tbody>
+	</table>
+	<h4>Add a new Topic</h4>
+	<form>
+		<label>Topic: <input type="text" ng-model="newTopic.topic"></label><br><br>
+		<label>Description: </label><textarea ng-model="newTopic.description" rows="2" cols="15"></textarea><br>
+		<select ng-model="newTopic.category">
+			<option value="HTML">HTML</option>
+			<option value="JavaScript">JavaScript</option>
+			<option value="Python">Python</option>
+			<option value="iOS">iOS</option>
+			<option value="Ruby">Ruby</option>
+		</select>
+		<button ng-click="addTopic()">Submit</button>
+	</form>
+
+</div>

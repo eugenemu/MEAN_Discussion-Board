@@ -19,11 +19,12 @@ myApp.factory('userFactory', function($http, $sessionStorage) {
 		})
 	}
 
-	factory.getUser = function() {
+	factory.user = function() {
 		return $sessionStorage.currUser;
 	}
 
-	factory.getUserbyId = function(info, callback) {
+	factory.getUser = function(info, callback) {
+		console.log(info);
 		$http.post('/getUser', info).success(function(data) {
 			callback(data);
 		})

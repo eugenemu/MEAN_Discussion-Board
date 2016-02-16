@@ -1,7 +1,7 @@
 angular.module('myApp');
 myApp.controller('topicsController', function ($scope, $location, userFactory, commentFactory, topicFactory, postFactory, $routeParams) {
 
-	var user = userFactory.getUser();
+	var user = userFactory.user();
 
 	topicFactory.getTopic($routeParams, function(data) {
 		$scope.topicInfo = data;
@@ -38,9 +38,13 @@ myApp.controller('topicsController', function ($scope, $location, userFactory, c
 			var info = {topicId: topicId,postId: postId};
 			postFactory.like(info, function(data) {
 				$scope.posts = data;
-			})
+			});
 		}
 		
+	}
+
+	$scope.dashboard = function() {
+		$location.url('/dashboard');
 	}
 
 	$scope.dislike = function(postId, topicId, authorId) {

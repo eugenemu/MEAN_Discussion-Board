@@ -1,28 +1,44 @@
 <div ng-controller="topicsController">
-	<a href="#/dashboard">Dashboard</a> | <a href="#/">Logout</a>
-	<p><a href="#/showUser/{{topicInfo._user._id}}">{{topicInfo._user.name}}</a> posted a topic:</p>
-	<p>Topic Title: {{topicInfo.topic}}</p>
-	<p>Topic Description: {{topicInfo.description}}</p>
-	<p>Post your answer here...</p>
-	<textarea rows="3" cols="20" ng-model="newPost.post"></textarea>
-	<button ng-click="addPost()">Post</button>
-	<h4>Answers:</h4>
-	<div ng-repeat="posts in posts.posts">
-		<hr> 
-		<p class="posts"><a href="#/showUser/{{posts._user._id}}">{{posts._user.name}}</a>: {{posts.post}}</p>
-		
-		<button ng-click="like(posts._id, posts._topic, posts._user._id)">Like</button>
-		<span class="likes">{{posts.likes}} likes</span>
-		
-		<button ng-click="dislike(posts._id, posts._topic, posts._user._id)">Dislike</button>
-		<span class="dislikes">{{posts.dislikes}} dislikes</span><br>
-		
-		<div ng-repeat="comment in posts.comments">
-			<p class="comments"><a href="#/showUser/{{comment._user._id}}">{{comment._user.name}}</a>: {{comment.comment}}</p>
+	<div class="container">
+		<button class="btn btn-info btn-sm" ng-click="dashboard()">Back to Dashboard</button>
+		<button class="btn btn-danger btn-sm" ng-click="logout()">Logout</button>
+		<h3>
+			<a href="#/showUser/{{topicInfo._user._id}}">{{topicInfo._user.name}}</a> posted a topic:
+		</h3>
+		<h3>Topic Title: {{topicInfo.topic}}</h3>
+		<h3>Topic Description: {{topicInfo.description}}</h3>
+		<p>Post your answer here...</p>
+		<form>
+			<div class="form-group">
+				<textarea class="form-control" ng-model="newPost.post"></textarea>
+				<br>
+				<button class="btn btn-success" ng-click="addPost()">Post</button>
+			</div>
+		</form>
+		<br>
+		<h4>Answers:</h4>
+		<div ng-repeat="posts in posts.posts">
+			<hr> 
+			<h3>
+				<a href="#/showUser/{{posts._user._id}}">{{posts._user.name}}</a> posted: <span class="posts">{{posts.post}}</span>
+			</h3>
+			
+			<button ng-click="like(posts._id, posts._topic, posts._user._id)">Like</button>
+			<span class="likes">{{posts.likes}} likes</span>
+			
+			<button ng-click="dislike(posts._id, posts._topic, posts._user._id)">Dislike</button>
+			<span class="dislikes">{{posts.dislikes}} dislikes</span><br>
+			
+			<div ng-repeat="comment in posts.comments">
+				<h4 class="commentsRight"><a href="#/showUser/{{comment._user._id}}">{{comment._user.name}}</a> commented: <span class="comments">{{comment.comment}}</span></h4>
+			</div>
+			<form>
+				<div class="form-group">
+					<textarea ng-model="newComment[posts._id]" class="form-control"></textarea>
+					<button class="btn btn-primary btn-sm" ng-click="addComment(posts._id, newComment[posts._id])">Comment</button>
+				</div>
+			</form>
+			
 		</div>
-		
-		<textarea ng-model="newComment[posts._id]" rows="3", cols="20"></textarea>
-		<button ng-click="addComment(posts._id, newComment[posts._id])">Comment</button>
 	</div>
-	
 </div>

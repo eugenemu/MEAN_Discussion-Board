@@ -1,10 +1,10 @@
-<div ng-controller="loginController">
-	<p>Hello!</p>
-	<p>Please enter your name to join and share your ideas</p>
+<div class="container" ng-controller="loginController">
+	<h4>Welcome to DojoOverflow</h4>
+	<h4>Please enter your name to join to discussions about programming!</h4>
 	<form name="usersForm">
 		<input type="text" name="name" ng-model="user.name"
 		ng-minlength='3'
 		required>
-		<button ng-click="login()">Enter</button>
+		<button class="btn btn-info" ng-click="login()">Enter</button>
 	</form>
 </div>

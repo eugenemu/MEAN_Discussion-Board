@@ -1,37 +1,52 @@
 <div ng-controller="dashboardController">
-	<p>Welcome, {{user.name}}!</p>
-	<button ng-click="logout()">Logout</button>
-	<p>Search <input type="text" ng-model="filter_topics"></p>
-	<table>
-		<thead>
-			<tr>
-				<th>Category</th>
-				<th>Topic</th>
-				<th>User Name</th>
-				<th>Posts</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="topic in topics | filter: filter_topics">
-				<td>{{topic.category}} </td>
-				<td><a href="#showTopic/{{topic._id}}">{{topic.topic}}</a></td>
-				<td><a href="#showUser/{{topic._user._id}}">{{topic._user.name}}</a></td>
-				<td>{{topic.posts.length}}</td>
-			</tr>
-		</tbody>
-	</table>
-	<h4>Add a new Topic</h4>
-	<form>
-		<label>Topic: <input type="text" ng-model="newTopic.topic"></label><br><br>
-		<label>Description: </label><textarea ng-model="newTopic.description" rows="2" cols="15"></textarea><br>
-		<select ng-model="newTopic.category">
-			<option value="HTML">HTML</option>
-			<option value="JavaScript">JavaScript</option>
-			<option value="Python">Python</option>
-			<option value="iOS">iOS</option>
-			<option value="Ruby">Ruby</option>
-		</select>
-		<button ng-click="addTopic()">Submit</button>
-	</form>
+	<div class="container">
+		<h3>Welcome, {{user.name}}! <button class="btn btn-danger btn-sm" ng-click="logout()">Logout</button></h3> 
+		<hr>
+		<p>Search <input type="text" ng-model="filter_topics"></p>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Category</th>
+					<th>Topic</th>
+					<th>User Name</th>
+					<th>Posts</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="topic in topics | filter: filter_topics">
+					<td>{{topic.category}} </td>
+					<td><a href="#showTopic/{{topic._id}}">{{topic.topic}}</a></td>
+					<td><a href="#showUser/{{topic._user._id}}">{{topic._user.name}}</a></td>
+					<td>{{topic.posts.length}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<h4>Add a new Topic</h4>
 
+		<div id="addTopic">
+			<form>
+				<div class="form-group">
+					<label>Topic:</label>
+					<input type="text" class="form-control" placeholder="Topic Title" aria-describedby="sizing-addon3" ng-model="newTopic.topic">
+				</div>
+				<div class="form-group">
+					<label>Description:</label><textarea class="form-control" ng-model="newTopic.description" placeholder="Topic Description"></textarea>
+				</div>
+				<div class="form-group">
+					<label>Category:</label>
+					<select ng-model="newTopic.category" class="form-control">
+						<option value="HTML">HTML</option>
+						<option value="JavaScript">JavaScript</option>
+						<option value="Python">Python</option>
+						<option value="iOS">iOS</option>
+						<option value="Ruby">Ruby</option>
+					</select>
+				</div>
+
+				<button style="float: right" class="btn btn-primary" ng-click="addTopic()">Submit</button>
+				
+			</form>
+		</div>
+		
+	</div>
 </div>

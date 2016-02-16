@@ -24,7 +24,6 @@ myApp.factory('userFactory', function($http, $sessionStorage) {
 	}
 
 	factory.getUser = function(info, callback) {
-		console.log(info);
 		$http.post('/getUser', info).success(function(data) {
 			callback(data);
 		})

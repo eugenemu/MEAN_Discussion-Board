@@ -2,7 +2,8 @@ angular.module('myApp');
 myApp.controller('dashboardController', function ($scope, $location, userFactory, topicFactory) {
 
 	$scope.user = userFactory.user();
-	console.log($scope.user);
+
+	$scope.something = ["HTML", "Javascript", "Python", "iOS", "Ruby"]
 
 	topicFactory.showTopics(function(data) {
 		$scope.topics = data;
